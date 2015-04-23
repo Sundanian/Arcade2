@@ -84,3 +84,21 @@ C:\Users\Nicolai Bülov\Documents\Arcade2\AstroidsArcadeClone\AstroidsArcadeClon
 C:\Users\Nicolai Bülov\Documents\Arcade2\AstroidsArcadeClone\AstroidsArcadeClone\obj\x86\Debug\AstroidsArcadeClone.csprojResolveAssemblyReference.cache
 C:\Users\Nicolai Bülov\Documents\Arcade2\AstroidsArcadeClone\AstroidsArcadeClone\obj\x86\Debug\AstroidsArcadeClone.exe
 C:\Users\Nicolai Bülov\Documents\Arcade2\AstroidsArcadeClone\AstroidsArcadeClone\obj\x86\Debug\AstroidsArcadeClone.pdb
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\bangLarge.wav
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\bangMedium.wav
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\bangSmall.wav
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\beat1.wav
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\beat2.wav
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\fire.wav
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\saucerBig.wav
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\saucerSmall.wav
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\thrust.wav
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\bangLarge.xnb
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\bangMedium.xnb
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\bangSmall.xnb
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\beat1.xnb
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\beat2.xnb
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\fire.xnb
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\saucerBig.xnb
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\saucerSmall.xnb
+C:\Users\ThomasKrog\Documents\ArcadeProject\AstroidsArcadeClone\AstroidsArcadeClone\bin\Windows\Debug\Content\thrust.xnb

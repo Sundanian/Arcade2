@@ -27,16 +27,13 @@ namespace AstroidsArcadeClone
         private static int score = 0;
         private SpriteFont sf;
         private float timer = 25;
-<<<<<<< HEAD
         private Keys[] lastPressedKeys;
         private string playerName = string.Empty;
         private bool enterNameTime = true;
         private bool drawHighscore;
-=======
         private int timer2 = 0;
         private SoundEffect effect;
         private SoundEffect effect2;
->>>>>>> 6a3dc4d75fd2617909daa19a9bcd7d9b8c0d31db
 
         private static SQLiteConnection dbcon = new SQLiteConnection("Data Source = highscore.db;Version=3");
         private static SQLiteCommand command = new SQLiteCommand("", dbcon);
