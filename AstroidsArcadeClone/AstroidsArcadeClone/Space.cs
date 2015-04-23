@@ -272,21 +272,42 @@ namespace AstroidsArcadeClone
             {
                 spriteBatch.DrawString(sf, "Game Over!", new Vector2(0, 64), Color.White);
 
+                #region highscore
                 //Highscore
                 command.CommandText = "select * from Highscore order by Score desc";
                 command.ExecuteNonQuery();
                 SQLiteDataReader reader = command.ExecuteReader();
-                List<string> output = new List<string>();
+                List<string> Names = new List<string>();
+                List<string> Scores = new List<string>();
                 while (reader.Read())
                 {
-                    output.Add(reader["Name"].ToString());
-                    output.Add(reader["Score"].ToString());
+                    Names.Add(reader["Name"].ToString());
+                    Scores.Add(reader["Score"].ToString());
                 }
-                for (int i = 0; i < 20; i++)
+                reader.Close();
+                if (Names.Count < 10)
                 {
-
+                    int x = Names.Count;
+                    for (int i = 0; i < 10 - x; i++)
+                    {
+                        Names.Add(" ");
+                        Scores.Add(" ");
+                    }
                 }
-                spriteBatch.DrawString(sf, "Highscore\n\nName\tScore\n\n" + output[0].ToString() + "\t" + output[1].ToString() + "\n" + output[2].ToString() + "\t" + output[3].ToString() + "\n" + output[4].ToString() + "\t" + output[5].ToString() + "\n" + output[6].ToString() + "\t" + output[7].ToString() + "\n" + output[8].ToString() + "\t" + output[9].ToString() + "\n" + output[10].ToString() + "\t" + output[11].ToString() + "\n" + output[12].ToString() + "\t" + output[13].ToString() + "\n" + output[14].ToString() + "\t" + output[15].ToString() + "\n" + output[16].ToString() + "\t" + output[17].ToString() + "\n" + output[18].ToString() + "\t" + output[19].ToString() + "\nPress r to retry", new Vector2(0, 150), Color.White);
+                spriteBatch.DrawString(sf, "Highscore:", new Vector2(0, 170), Color.White);
+
+                spriteBatch.DrawString(sf, "Name", new Vector2(0, 210), Color.White);
+                spriteBatch.DrawString(sf, "Score", new Vector2(500, 210), Color.White);
+
+                for (int i = 0; i < Names.Count; i++)
+                {
+                    spriteBatch.DrawString(sf, Names[i].ToString(), new Vector2(0, 230 + i * 20), Color.White);
+                }
+                for (int i = 0; i < Scores.Count; i++)
+                {
+                    spriteBatch.DrawString(sf, Scores[i].ToString(), new Vector2(500, 230 + i * 20), Color.White);
+                }
+                #endregion
             }
             spriteBatch.End();
 
