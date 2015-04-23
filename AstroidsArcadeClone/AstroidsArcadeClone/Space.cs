@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.Linq;
 
 namespace AstroidsArcadeClone
 {
@@ -25,6 +26,10 @@ namespace AstroidsArcadeClone
         private static int score = 0;
         private SpriteFont sf;
         private float timer = 25;
+        private Keys[] lastPressedKeys;
+        private string playerName = string.Empty;
+        private bool enterNameTime = true;
+        private bool drawHighscore;
 
         private static SQLiteConnection dbcon = new SQLiteConnection("Data Source = highscore.db;Version=3");
         private static SQLiteCommand command = new SQLiteCommand("", dbcon);
@@ -114,7 +119,6 @@ namespace AstroidsArcadeClone
         /// </summary>
         protected override void UnloadContent()
         {
-            dbcon.Close();
             // TODO: Unload any non ContentManager content here
         }
 
@@ -129,6 +133,15 @@ namespace AstroidsArcadeClone
                 Exit();
 
             // TODO: Add your update logic here
+
+            //Indtastning af navn
+            if (Player.Instance.Lives == 0)
+            {
+                if (enterNameTime)
+                {
+                    GetKeys();
+                }
+            }
 
             //Respawn af astroids
             int tmpEnemyCount = 0;
@@ -268,10 +281,18 @@ namespace AstroidsArcadeClone
                 obj.Draw(spriteBatch);
             }
             spriteBatch.DrawString(sf, "Score: " + score, new Vector2(0, 128), Color.White);
+            #region død, highscore mm.
             if (Player.Instance.Lives == 0)
             {
                 spriteBatch.DrawString(sf, "Game Over!", new Vector2(0, 64), Color.White);
-
+                if (enterNameTime)
+                {
+                    spriteBatch.DrawString(sf, "Enter name:", new Vector2(500, Window.ClientBounds.Height / 2), Color.White);
+                    spriteBatch.DrawString(sf, playerName, new Vector2(700, Window.ClientBounds.Height / 2), Color.White);
+                }
+            }
+            if (drawHighscore)
+            {
                 #region highscore
                 //Highscore
                 command.CommandText = "select * from Highscore order by Score desc";
@@ -307,11 +328,92 @@ namespace AstroidsArcadeClone
                 {
                     spriteBatch.DrawString(sf, Scores[i].ToString(), new Vector2(500, 230 + i * 20), Color.White);
                 }
+
+                //Press r to restart
+                spriteBatch.DrawString(sf, "Press r to restart", new Vector2(700, Window.ClientBounds.Height / 2 + 20), Color.White);
+                pressRToRestart();
                 #endregion
             }
+            #endregion
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void GetKeys()
+        {
+            KeyboardState kbState = Keyboard.GetState();
+            Keys[] pressedKeys = kbState.GetPressedKeys();
+
+            //check  if any of the previous update's keys are no longer pressed
+            try
+            {
+                foreach (Keys key in lastPressedKeys)
+                {
+                    if (!pressedKeys.Contains(key))
+                    {
+                        OnKeyUp(key);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+            //check if the currently pressed keys were already pressed
+            try
+            {
+                foreach (Keys key in pressedKeys)
+                {
+                    if (!lastPressedKeys.Contains(key))
+                    {
+                        OnKeyDown(key);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+            //save the currently pressed keys so we can compare on the next update
+            lastPressedKeys = pressedKeys;
+        }
+        private void OnKeyDown(Keys key)
+        {
+            if (key == Keys.Back && playerName.Length > 0)
+            {
+                playerName = playerName.Remove(playerName.Length - 1);
+            }
+            else if (key == Keys.Enter)
+            {
+                enterNameTime = false;
+                drawHighscore = true;
+                command.CommandText = "INSERT INTO Highscore(Name, Score) VALUES('" + playerName + "', " + score + ")";
+                command.ExecuteNonQuery();
+            }
+            else
+            {
+                playerName += key.ToString();
+            }
+        }
+        private void OnKeyUp(Keys key)
+        {
+            //do stuff
+        }
+        private void pressRToRestart()
+        {
+            KeyboardState kbState = Keyboard.GetState();
+            Keys[] pressedKeys = kbState.GetPressedKeys();
+
+            foreach (Keys key in pressedKeys)
+            {
+                if (key == Keys.R)
+                {
+                    
+                }
+            }
         }
     }
 }
