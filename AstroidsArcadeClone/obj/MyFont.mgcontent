@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/ThomasKrog/Documents/ArcadeProject/AstroidsArcadeClone/MyFont.spritefont</SourceFile>
+  <SourceTime>2015-01-20T01:24:04+01:00</SourceTime>
+  <DestFile>C:/Users/ThomasKrog/Documents/ArcadeProject/AstroidsArcadeClone/bin/MyFont.xnb</DestFile>
+  <DestTime>2015-04-22T12:39:36.0787191+02:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2015-03-16T04:01:46+01:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2015-03-16T04:01:46+01:00</ProcessorTime>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
