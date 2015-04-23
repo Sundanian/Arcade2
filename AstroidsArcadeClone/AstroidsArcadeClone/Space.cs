@@ -148,6 +148,7 @@ namespace AstroidsArcadeClone
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            dbcon.Close();
         }
 
         /// <summary>
@@ -359,8 +360,7 @@ namespace AstroidsArcadeClone
                 }
 
                 //Press r to restart
-                spriteBatch.DrawString(sf, "Press r to restart", new Vector2(700, Window.ClientBounds.Height / 2 + 20), Color.White);
-                pressRToRestart();
+                spriteBatch.DrawString(sf, "Restart game to try again.", new Vector2(700, Window.ClientBounds.Height / 2 + 20), Color.White);
                 #endregion
             }
             #endregion
@@ -430,19 +430,6 @@ namespace AstroidsArcadeClone
         private void OnKeyUp(Keys key)
         {
             //do stuff
-        }
-        private void pressRToRestart()
-        {
-            KeyboardState kbState = Keyboard.GetState();
-            Keys[] pressedKeys = kbState.GetPressedKeys();
-
-            foreach (Keys key in pressedKeys)
-            {
-                if (key == Keys.R)
-                {
-                    
-                }
-            }
         }
     }
 }
