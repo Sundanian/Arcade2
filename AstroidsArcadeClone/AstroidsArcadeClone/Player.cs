@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,6 +18,10 @@ namespace AstroidsArcadeClone
         private Vector2 oldVelocity = Vector2.Zero;
         private bool invinsible = false;
         private float invinsibleTimer = 0;
+        private SoundEffect effect;
+        private SoundEffect effect2;
+        private SoundEffect effect3;
+        private int soundTimer = 0;
 
         public int Lives
         {
@@ -50,6 +55,11 @@ namespace AstroidsArcadeClone
             CreateAnimation("Thrust", 2, 0, 0, 128, 128, Vector2.Zero, 30, texture);
             PlayAnimation("Idle");
 
+            //Laver vores lyd filer
+            effect = content.Load<SoundEffect>("fire");
+            effect2 = content.Load<SoundEffect>("thrust");
+            effect3 = content.Load<SoundEffect>("bangSmall");
+
             base.LoadContent(content);
         }
         private void HandleInput(KeyboardState keyState)
@@ -59,6 +69,17 @@ namespace AstroidsArcadeClone
                 //Thrust
                 PlayAnimation("Thrust");
                 velocity += new Vector2((float)Math.Sin(rotation), -(float)Math.Cos(rotation));
+                //nogle if sætninger som sørger for at thrust lyden ikke bliver spillet ind over hinanden
+                if (soundTimer == 0)
+                {
+                    effect2.Play();
+                    soundTimer++;
+                }
+                soundTimer++;
+                if (soundTimer == 15)
+                {
+                    soundTimer = 0;
+                }
             }
             else
             {
@@ -78,6 +99,7 @@ namespace AstroidsArcadeClone
             {
                 if (timer > 20)
                 {
+                    effect.Play(); //lyd af skud der bliver affyret
                     Space.AddObjects.Add(new Missile(position + new Vector2(-(float)Math.Sin(rotation), (float)Math.Cos(rotation)), this));
                     timer = 0;
                 }
@@ -125,6 +147,7 @@ namespace AstroidsArcadeClone
                         {
                             if (invinsible == false)
                             {
+                                effect3.Play(); //eksplosion når spilleren dør
                                 lives -= 1;
                                 invinsible = true;
                                 for (int i = 0; i < 9; i++)

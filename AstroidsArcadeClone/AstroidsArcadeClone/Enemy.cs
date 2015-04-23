@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,6 +18,14 @@ namespace AstroidsArcadeClone
         private static Random r = new Random();
         private EnemyType type;
         private int timer = 0;
+        private SoundEffect effect;
+        private SoundEffect effect2;
+        private SoundEffect effect3;
+        private SoundEffect effect4;
+        private SoundEffect effect5;
+        private int soundTimer = 0;
+        private int soundTimer2 = 0;
+
 
         public EnemyType Type
         {
@@ -54,10 +63,46 @@ namespace AstroidsArcadeClone
 
             Move();
 
+            //Vores metode som laver Ufo lyde, og sørger for de ikke spiller ind over hinanden.
+            if (type == EnemyType.UFONormal)
+            {
+                if (soundTimer == 0)
+                {
+                    effect4.Play();
+                    soundTimer++;
+                }
+                soundTimer++;
+                if (soundTimer == 12)
+                {
+                    soundTimer = 0;
+                }
+            }
+            else if (type == EnemyType.UFOSmall)
+            {
+                if (soundTimer2 == 0)
+                {
+                    effect5.Play();
+                    soundTimer2++;
+                }
+                soundTimer2++;
+                if (soundTimer2 == 12)
+                {
+                    soundTimer2 = 0;
+                }
+
+            }
+
             base.Update(gametime);
         }
         public override void LoadContent(ContentManager content)
         {
+            //LAver vores lyd filer
+            effect = content.Load<SoundEffect>("bangLarge");
+            effect2 = content.Load<SoundEffect>("bangMedium");
+            effect3 = content.Load<SoundEffect>("bangSmall");
+            effect4 = content.Load<SoundEffect>("saucerBig");
+            effect5 = content.Load<SoundEffect>("saucerSmall");
+
             velocityX = r.Next(-1, 2);
             velocityY = r.Next(-1, 2);
             if (velocityX == 0 && velocityY == 0)
@@ -190,6 +235,21 @@ namespace AstroidsArcadeClone
                 {
                     if (PixelCollision(obj))
                     {
+                        //vores if sætninger som tjekker hvilken type enemy der dør og spiller den lyd som passer til
+                        if (this.type == EnemyType.AstroidBig)
+                        {
+                            effect.Play();
+                        }
+                        else if (this.type == EnemyType.AstroidNormal || this.type == EnemyType.UFONormal)
+                        {
+                            effect2.Play();
+                        }
+                        else if (this.type == EnemyType.AstroidSmall || this.type == EnemyType.UFOSmall)
+                        {
+                            effect3.Play();
+                        }
+
+
                         if (!(type == EnemyType.UFONormal || type == EnemyType.UFOSmall))
                         {
                             DeathSpawn(obj);

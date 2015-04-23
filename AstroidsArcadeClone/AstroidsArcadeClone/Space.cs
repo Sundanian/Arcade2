@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -25,6 +26,9 @@ namespace AstroidsArcadeClone
         private static int score = 0;
         private SpriteFont sf;
         private float timer = 25;
+        private int timer2 = 0;
+        private SoundEffect effect;
+        private SoundEffect effect2;
 
         private static SQLiteConnection dbcon = new SQLiteConnection("Data Source = highscore.db;Version=3");
         private static SQLiteCommand command = new SQLiteCommand("", dbcon);
@@ -102,10 +106,34 @@ namespace AstroidsArcadeClone
             spriteBatch = new SpriteBatch(GraphicsDevice);
             sf = Content.Load<SpriteFont>("MyFont");
 
+            //Laver musik filerne
+            effect = Content.Load<SoundEffect>("beat1");
+            effect2 = Content.Load<SoundEffect>("Beat2");
+
 
             // TODO: use this.Content to load your game content here
             addObjects.Add(Player.Instance);
             Player.Instance.Position = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2);
+        }
+
+        //Vores metode som får musikken til at spille med lidt mellemrum i stedet for konstant
+        private void music()
+        {
+            if (timer2 == 0)
+            {
+                effect.Play();
+                timer2++;
+            }
+            if (timer2 == 40)
+            {
+                effect2.Play();
+                timer2++;
+            }
+            if (timer2 == 80)
+            {
+                timer2 = 0;
+            }
+            timer2++;
         }
 
         /// <summary>
@@ -128,6 +156,7 @@ namespace AstroidsArcadeClone
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            music();
             // TODO: Add your update logic here
 
             //Respawn af astroids
